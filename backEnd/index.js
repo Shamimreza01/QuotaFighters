@@ -6,10 +6,15 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: '*', 
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+  }));
+  
 
 const uri = process.env.URI;
-console.log(uri);
+console.log("MongoDB URI:", uri);
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -19,14 +24,16 @@ const client = new MongoClient(uri, {
 });
 
 async function run() {
+  console.log("Starting run function");
   try {
     await client.connect();
     console.log("Database is connected");
     const db = client.db("FreedomFighter");
     const FFList = db.collection("FFList");
-    const TemporaryFFList=db.collection("TemporaryFFList");
+    const TemporaryFFList = db.collection("TemporaryFFList");
 
     app.get('/api/data', async (req, res) => {
+      console.log("GET /api/data called");
       try {
         const data = await FFList.find().toArray();
         if (!data.length) {
@@ -41,6 +48,7 @@ async function run() {
     });
 
     app.post('/api/FFListSubmit', async (req, res) => {
+      console.log("POST /api/FFListSubmit called");
       try {
         const data = req.body;
         const response = await TemporaryFFList.insertOne(data);
@@ -50,17 +58,20 @@ async function run() {
         res.status(500).send({ message: "Error submitting data" });
       }
     });
+
+    app.get('/', (req, res) => {
+      res.send({ data: "server is running" });
+    });
   } catch (err) {
     console.error("Error connecting to database:", err);
     process.exit(1);
   }
+  console.log("End of run function");
 }
-app.get('/',(req,res)=>{
-   res.send({"data":"server is running"});
-})
+
 run();
 
-const port = process.env.PORT||3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log("server is running ......");
+  console.log(`Server is running on port ${port}`);
 });
