@@ -1,0 +1,10 @@
+.container{
+    height: 88vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-image: url('../image/bloodedbg.jpg'); */
+    background-color: #E8F0FE;;
+    background-size: auto;
+}

@@ -1,0 +1,81 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+.containerBox{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-image: url('../image/bloodedbg.jpg'); */
+    background-color: #E8F0FE;;
+    background-size: auto;
+}
+.container{
+    height: 65vh;
+    width: 70vw;
+    background-color: white;
+    border: 1px solid green;
+    border-radius: 20px;
+}
+.container>h3{
+    text-align: center;;
+}
+.imgCard{
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.img{
+    height: 100px;
+    width: 100px;
+    border: 1px solid green;
+    border-radius: 50%;
+ 
+}
+.identity{
+    height: 30vh;
+    width: 100%;
+    text-align: center;
+    color:black; 
+}
+.btn{
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    color: white;
+}
+.btn:disabled{
+    background-color: gray;
+}
+  .buttonSection{
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .deathDate{
+    font-weight: 700;
+  }
+
+  @media only screen and (min-width: 600px) {
+    /* .containerBox {
+      background-color:lightblue;
+    } */
+
+  }
