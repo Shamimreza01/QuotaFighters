@@ -24,7 +24,7 @@ async function run() {
     console.log("Database is connected");
     const db = client.db("FreedomFighter");
     const FFList = db.collection("FFList");
-    const TemporaryFFList = db.collection("TemporaryFFList");
+    const TemporaryFFList=db.collection("TemporaryFFList");
 
     app.get('/api/data', async (req, res) => {
       try {
@@ -55,10 +55,12 @@ async function run() {
     process.exit(1);
   }
 }
-
+app.get('/',(req,res)=>{
+   res.send({"data":"server is running"});
+})
 run();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log("server is running ......");
 });
